@@ -7,7 +7,7 @@
  *  
  */
 
-class Core_Db_SQLAssember implements Core_Db_ISQL
+class Core_Db_SQLAssembler implements Core_Db_ISQL
 {
     const LIST_COM = 0;
     const LIST_AND = 1;
@@ -46,11 +46,10 @@ class Core_Db_SQLAssember implements Core_Db_ISQL
     public function getSelect($tables, $fields, $conds = NULL, $options = NULL, $appends = NULL)
     {
         $sql = 'SELECT ';
-
         // 1. options
         if($options !== NULL)
         {
-            $options = $this->__makeList($options, Core_Db_SQLAssember::LIST_COM, ' ');
+            $options = $this->__makeList($options, Core_Db_SQLAssembler::LIST_COM, ' ');
             if(!strlen($options))
             {
                 $this->sql = NULL;
@@ -60,7 +59,7 @@ class Core_Db_SQLAssember implements Core_Db_ISQL
         }
 
         // 2. fields
-        $fields = $this->__makeList($fields, Core_Db_SQLAssember::LIST_COM);
+        $fields = $this->__makeList($fields, Core_Db_SQLAssembler::LIST_COM);
         if(!strlen($fields))
         {
             $this->sql = NULL;
@@ -69,7 +68,7 @@ class Core_Db_SQLAssember implements Core_Db_ISQL
         $sql .= "$fields FROM ";
 
         // 3. from
-        $tables = $this->__makeList($tables, Core_Db_SQLAssember::LIST_COM);
+        $tables = $this->__makeList($tables, Core_Db_SQLAssembler::LIST_COM);
         if(!strlen($tables))
         {
             $this->sql = NULL;
@@ -78,9 +77,9 @@ class Core_Db_SQLAssember implements Core_Db_ISQL
         $sql .= $tables;
 
         // 4. conditions
-        if($conds !== NULL)
+        if($conds !== NULL && $conds)
         {
-            $conds = $this->__makeList($conds, Core_Db_SQLAssember::LIST_AND);
+            $conds = $this->__makeList($conds, Core_Db_SQLAssembler::LIST_AND);
             if(!strlen($conds))
             {
                 $this->sql = NULL;
@@ -88,11 +87,10 @@ class Core_Db_SQLAssember implements Core_Db_ISQL
             }
             $sql .= " WHERE $conds";
         }
-
         // 5. other append
         if($appends !== NULL)
         {
-            $appends = $this->__makeList($appends, Core_Db_SQLAssember::LIST_COM, ' ');
+            $appends = $this->__makeList($appends, Core_Db_SQLAssembler::LIST_COM, ' ');
             if(!strlen($appends))
             {
                 $this->sql = NULL;
@@ -162,7 +160,7 @@ class Core_Db_SQLAssember implements Core_Db_ISQL
         else
         {
             $sql = "UPDATE $options $table SET ";
-            $row = $this->__makeList($row, Core_Db_SQLAssember::LIST_SET);
+            $row = $this->__makeList($row, Core_Db_SQLAssembler::LIST_SET);
             if(!strlen($row))
             {
                 $this->sql = NULL;
@@ -174,7 +172,7 @@ class Core_Db_SQLAssember implements Core_Db_ISQL
         // 3. conditions
         if($conds !== NULL)
         {
-            $conds = $this->__makeList($conds, Core_Db_SQLAssember::LIST_AND);
+            $conds = $this->__makeList($conds, Core_Db_SQLAssembler::LIST_AND);
             if(!strlen($conds))
             {
                 $this->sql = NULL;
@@ -186,7 +184,7 @@ class Core_Db_SQLAssember implements Core_Db_ISQL
         // 4. other append
         if($appends !== NULL)
         {
-            $appends = $this->__makeList($appends, Core_Db_SQLAssember::LIST_COM, ' ');
+            $appends = $this->__makeList($appends, Core_Db_SQLAssembler::LIST_COM, ' ');
             if(!strlen($appends))
             {
                 $this->sql = NULL;
@@ -220,7 +218,7 @@ class Core_Db_SQLAssember implements Core_Db_ISQL
         // 1. options
         if($options !== null)
         {
-            $options = $this->__makeList($options, Core_Db_SQLAssember::LIST_COM, ' ');
+            $options = $this->__makeList($options, Core_Db_SQLAssembler::LIST_COM, ' ');
             if(!strlen($options))
             {
                 $this->sql = null;
@@ -233,7 +231,7 @@ class Core_Db_SQLAssember implements Core_Db_ISQL
         $sql .= "$table(";
 
         // 2. fields
-        $fields = $this->__makeList($fields, Core_Db_SQLAssember::LIST_COM); 
+        $fields = $this->__makeList($fields, Core_Db_SQLAssembler::LIST_COM);
         if (!strlen($fields))
         {
             return null;
@@ -260,7 +258,7 @@ class Core_Db_SQLAssember implements Core_Db_ISQL
         $insert_values = "";
         foreach ($values as $value)
         {
-            $val = $this->__makeList($value, Core_Db_SQLAssember::LIST_VAL);
+            $val = $this->__makeList($value, Core_Db_SQLAssembler::LIST_VAL);
             $size = count( explode(",", $val));
             if(!strlen($val) || $size != $count)
             {
@@ -281,7 +279,7 @@ class Core_Db_SQLAssember implements Core_Db_ISQL
         if(!empty($onDup))
         {
             $sql .= ' ON DUPLICATE KEY UPDATE ';
-            $onDup = $this->__makeList($onDup, Core_Db_SQLAssember::LIST_SET);
+            $onDup = $this->__makeList($onDup, Core_Db_SQLAssembler::LIST_SET);
             if(!strlen($onDup))
             {
                 $this->sql = null;
@@ -324,7 +322,7 @@ class Core_Db_SQLAssember implements Core_Db_ISQL
         $sql .= "$table SET ";
 
         // 3. clumns and values
-        $row = $this->__makeList($row, Core_Db_SQLAssember::LIST_SET);
+        $row = $this->__makeList($row, Core_Db_SQLAssembler::LIST_SET);
         if(!strlen($row))
         {
             $this->sql = NULL;
@@ -335,7 +333,7 @@ class Core_Db_SQLAssember implements Core_Db_ISQL
         if(!empty($onDup))
         {
             $sql .= ' ON DUPLICATE KEY UPDATE ';
-            $onDup = $this->__makeList($onDup, Core_Db_SQLAssember::LIST_SET);
+            $onDup = $this->__makeList($onDup, Core_Db_SQLAssembler::LIST_SET);
             if(!strlen($onDup))
             {
                 $this->sql = NULL;
@@ -347,7 +345,7 @@ class Core_Db_SQLAssember implements Core_Db_ISQL
         return $sql;
     }
 
-    private function __makeList($arrList, $type = Core_Db_SQLAssember::LIST_SET, $cut = ', ')
+    private function __makeList($arrList, $type = Core_Db_SQLAssembler::LIST_SET, $cut = ', ')
     {
         if(is_string($arrList))
         {
@@ -357,7 +355,7 @@ class Core_Db_SQLAssember implements Core_Db_ISQL
         $sql = '';
 
         // for set in insert and update
-        if($type == Core_Db_SQLAssember::LIST_SET)
+        if($type == Core_Db_SQLAssembler::LIST_SET)
         {
             foreach($arrList as $name => $value)
             {
@@ -374,7 +372,7 @@ class Core_Db_SQLAssember implements Core_Db_ISQL
             $sql = substr($sql, 0, strlen($sql) - 2);
         }
         // for where conds
-        else if($type == Core_Db_SQLAssember::LIST_AND)
+        else if($type == Core_Db_SQLAssembler::LIST_AND)
         {
             foreach($arrList as $name => $value)
             {
@@ -419,7 +417,7 @@ class Core_Db_SQLAssember implements Core_Db_ISQL
             $sql = substr($sql, 0, strlen($sql) - 5);
         }
         //for multi insert
-        else if($type == Core_Db_SQLAssember::LIST_VAL)
+        else if($type == Core_Db_SQLAssembler::LIST_VAL)
         {
             foreach($arrList as $value)
             {

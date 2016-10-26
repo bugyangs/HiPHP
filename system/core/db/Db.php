@@ -7,9 +7,12 @@ class Core_Db_Db {
     const FETCH_ASSOC = 2;  // return associate array
     const FETCH_OBJ = 3;    // return Bd_DBResult object
 
-    private $mysql = NULL;
-    private $sqlAssember = NULL;
-    private $lastSql = "";
+    public $mysql = NULL;
+    /**
+     * @var Core_Db_SQLAssembler
+     */
+    private $sqlAssembler = NULL;
+    private $lastSQL = "";
     private $totalCost = 0;
     private $lastCost = 0;
     private $arrOptions = array();
@@ -18,12 +21,33 @@ class Core_Db_Db {
     public $dbConfig = array();
     public $retryTime = 0;
 
+    private static $_instance;
 
+    /**
+     * @param $dbName
+     * @return Core_Db_Db
+     */
+    public static function getInstance($clusterName) {
+        if(!self::$_instance[$clusterName]) {
+            self::$_instance[$clusterName] = new self($clusterName);
+        }
+        return self::$_instance[$clusterName];
+    }
     /**
      * 构造函数
      */
-    public function __construct() {
+    private function __construct($clusterName) {
         $this->mysql = mysqli_init();
+        $this->__getSQLAssembler();
+        $dbConfig = Core_Config::getInstance("database")->item($clusterName);
+        $host = $dbConfig["hostname"];
+        $userName = $dbConfig["username"];
+        $password = $dbConfig["password"];
+        $dbName = $dbConfig["database"];
+        $port = $dbConfig["port"];
+        if(!$this->connect($host, $userName, $password, $dbName, $port, 3)) {
+            throw new Core_Exception(Core_Exception::SYS_DB_CONNECT_FAIL);
+        }
     }
 
     /**
@@ -61,6 +85,7 @@ class Core_Db_Db {
      * @param array $append
      * @param int $fetchType
      * @return array|bool|Core_Db_DBResult|mysqli_result
+     * @throws Core_Exception
      */
     public function select($table,
                            $fields,
@@ -68,8 +93,7 @@ class Core_Db_Db {
                            $option = null,
                            $append = array(),
                            $fetchType = Core_Db_Db::FETCH_ASSOC) {
-        $this->__getSQLAssember();
-        $sql = $this->sqlAssember->getSelect($table, $fields, $condition, $option, $append);
+        $sql = $this->sqlAssembler->getSelect($table, $fields, $condition, $option, $append);
         if(!$sql) {
             return false;
         }
@@ -77,9 +101,8 @@ class Core_Db_Db {
     }
 
     public function selectCount($table, $condition = null, $option = null, $append = null) {
-        $this->__getSQLAssember();
         $fields = "COUNT(*)";
-        $sql = $this->sqlAssember->getSelect($table, $fields, $condition, $option, $append);
+        $sql = $this->sqlAssembler->getSelect($table, $fields, $condition, $option, $append);
         if(!$sql) {
             return false;
         }
@@ -98,8 +121,7 @@ class Core_Db_Db {
      * @return bool|int
      */
     public function insert($table, $row, $option = null, $onDup = null) {
-        $this->__getSQLAssember();
-        $sql = $this->sqlAssember->getInsert($table, $row, $option, $onDup);
+        $sql = $this->sqlAssembler->getInsert($table, $row, $option, $onDup);
         if(!$sql || !$this->query($sql))
         {
             return false;
@@ -116,8 +138,7 @@ class Core_Db_Db {
      * @return bool|int
      */
     public function update($table, $row, $condition = null, $option = null, $append = null) {
-        $this->__getSQLAssember();
-        $sql = $this->sqlAssember->getUpdate($table, $row, $condition, $option, $append);
+        $sql = $this->sqlAssembler->getUpdate($table, $row, $condition, $option, $append);
         if(!$sql || !$this->update($table, $row, $condition, $option, $append)) {
             return false;
         }
@@ -132,8 +153,7 @@ class Core_Db_Db {
      * @return bool|int
      */
     public function delete($table, $condition = null, $option = null, $append = null) {
-        $this->__getSQLAssember();
-        $sql = $this->sqlAssember->getDelete($table, $condition, $option, $append);
+        $sql = $this->sqlAssembler->getDelete($table, $condition, $option, $append);
         if(!$sql || !$this->query($sql)) {
             return false;
         }
@@ -146,7 +166,7 @@ class Core_Db_Db {
      * @return array|bool|Core_Db_DBResult|mysqli_result
      */
     public function query($sql, $fetchType = Core_Db_Db::FETCH_ASSOC) {
-        $this->lastSql = $sql;
+        $this->lastSQL = $sql;
         $beg = intval(microtime(true)*1000000);
         $res = $this->mysql->query($sql);
         $this->lastCost = intval(microtime(true)*1000000) - $beg;
@@ -155,6 +175,7 @@ class Core_Db_Db {
             $ret = ($res == true);
             if(!$ret) {
                 //log
+                throw new Core_Exception(Core_Exception::SYS_DB_CONNECT_FAIL, $sql);
             }
         }
         else {
@@ -236,7 +257,6 @@ class Core_Db_Db {
      * @return
      */
     public function escapeString($string) {
-        //if enable splitdb
         if(isset($this->splitDB))
         {
             return $this->splitDB->escapeString($string);
@@ -245,15 +265,15 @@ class Core_Db_Db {
     }
 
     /**
-     * @return Core_Db_SQLAssember|null
+     * @return Core_Db_SQLAssembler|null
      */
-    private function __getSQLAssember()
+    private function __getSQLAssembler()
     {
-        if($this->sqlAssember == NULL)
+        if($this->sqlAssembler == NULL)
         {
-            $this->sqlAssember = new Core_Db_SQLAssember($this);
+            $this->sqlAssembler = new Core_Db_SQLAssembler($this);
         }
-        return $this->sqlAssember;
+        return $this->sqlAssembler;
     }
 
     /**
@@ -354,5 +374,23 @@ class Core_Db_Db {
             default:
                 return NULL;
         }
+    }
+
+    /**
+     * @brief 获取上一次SQL语句
+     *
+     * @return
+     */
+    public function getLastSQL() {
+        return $this->lastSQL;
+    }
+
+    /**
+     * @brief 获取当前mysqli错误描述
+     *
+     * @return
+     */
+    public function error() {
+        return $this->mysql->error;
     }
 }

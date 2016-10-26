@@ -18,7 +18,7 @@ class Controller_Error extends Library_ControllerBase
             'message' => $exception->getMessage(),
             'trace' => $exception->getTraceAsString(),
         );
-        var_dump($exceptionInfo);die;
+        echo json_encode($exceptionInfo);die;
 
     }
 }

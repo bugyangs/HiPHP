@@ -1,0 +1,23 @@
+DEBUG: 16-10-25 19:24:10 [/Users/baidu/mysite/php/HiPHP/app/test/library/ActionBase.php:91] errno[0] logId[3327511830] request input :[]
+NOTICE: 16-10-25 19:24:10 [/Users/baidu/mysite/php/HiPHP/app/test/library/ActionBase.php:55] errno[0] logId[3327511830] module[test] uri[/] refer[] cookie[]  ERROR : {"code":0,"message":"No File:\/Users\/baidu\/mysite\/php\/HiPHP\/system\/core\/db\/SQLAssembler.php"}
+DEBUG: 16-10-25 19:24:10 [/Users/baidu/mysite/php/HiPHP/app/test/library/Response.php:17] errno[0] logId[3327511830] request response: {"status":1,"statusInfo":"\u7cfb\u7edf\u9519\u8bef","data":[],"t":1477394650}
+DEBUG: 16-10-25 19:46:14 [/Users/baidu/mysite/php/HiPHP/app/test/library/ActionBase.php:91] errno[0] logId[3459852816] request input :[]
+DEBUG: 16-10-25 19:46:14 [/Users/baidu/mysite/php/HiPHP/system/core/DbBase.php:202] errno[0] logId[3459852816] [DB SQL] 
+NOTICE: 16-10-25 19:46:14 [/Users/baidu/mysite/php/HiPHP/app/test/library/ActionBase.php:55] errno[0] logId[3459852816] module[test] uri[/] refer[] cookie[]  ERROR : {"code":0,"message":"[table : m_pic][fields : [\"id\",\"name\",\"url\",\"add_time\",\"mod_time\",\"is_del\"]][conditions : []][options : null][appends : [\" limit 0,10 \"]]"}
+DEBUG: 16-10-25 19:46:14 [/Users/baidu/mysite/php/HiPHP/app/test/library/Response.php:17] errno[0] logId[3459852816] request response: {"status":1,"statusInfo":"\u7cfb\u7edf\u9519\u8bef","data":[],"t":1477395974}
+DEBUG: 16-10-25 19:55:27 [/Users/baidu/mysite/php/HiPHP/app/test/library/ActionBase.php:91] errno[0] logId[3515145597] request input :[]
+DEBUG: 16-10-25 19:55:27 [/Users/baidu/mysite/php/HiPHP/system/core/DbBase.php:202] errno[0] logId[3515145597] [DB SQL] 
+NOTICE: 16-10-25 19:55:27 [/Users/baidu/mysite/php/HiPHP/app/test/library/ActionBase.php:55] errno[0] logId[3515145597] module[test] uri[/] refer[] cookie[]  ERROR : {"code":0,"message":"[table : m_pic][fields : [\"id\",\"name\",\"url\",\"add_time\",\"mod_time\",\"is_del\"]][conditions : []][options : null][appends : [\" limit 0,10 \"]]"}
+DEBUG: 16-10-25 19:55:27 [/Users/baidu/mysite/php/HiPHP/app/test/library/Response.php:17] errno[0] logId[3515145597] request response: {"status":1,"statusInfo":"\u7cfb\u7edf\u9519\u8bef","data":[],"t":1477396527}
+DEBUG: 16-10-25 19:56:39 [/Users/baidu/mysite/php/HiPHP/app/test/library/ActionBase.php:91] errno[0] logId[3522352775] request input :[]
+DEBUG: 16-10-25 19:56:54 [/Users/baidu/mysite/php/HiPHP/app/test/library/ActionBase.php:91] errno[0] logId[3523865097] request input :[]
+DEBUG: 16-10-25 19:57:07 [/Users/baidu/mysite/php/HiPHP/app/test/library/ActionBase.php:91] errno[0] logId[3525217587] request input :[]
+DEBUG: 16-10-25 19:57:15 [/Users/baidu/mysite/php/HiPHP/app/test/library/ActionBase.php:91] errno[0] logId[3525939641] request input :[]
+DEBUG: 16-10-25 19:57:24 [/Users/baidu/mysite/php/HiPHP/app/test/library/ActionBase.php:91] errno[0] logId[3526838590] request input :[]
+DEBUG: 16-10-25 19:57:30 [/Users/baidu/mysite/php/HiPHP/app/test/library/ActionBase.php:91] errno[0] logId[3527456860] request input :[]
+DEBUG: 16-10-25 19:57:30 [/Users/baidu/mysite/php/HiPHP/system/core/DbBase.php:201] errno[0] logId[3527456860] [DB SQL] 
+NOTICE: 16-10-25 19:57:30 [/Users/baidu/mysite/php/HiPHP/app/test/library/ActionBase.php:55] errno[0] logId[3527456860] module[test] uri[/] refer[] cookie[]  ERROR : {"code":0,"message":"[table : m_pic][fields : [\"id\",\"name\",\"url\",\"add_time\",\"mod_time\",\"is_del\"]][conditions : []][options : null][appends : [\" limit 0,10 \"]]"}
+DEBUG: 16-10-25 19:57:30 [/Users/baidu/mysite/php/HiPHP/app/test/library/Response.php:17] errno[0] logId[3527456860] request response: {"status":1,"statusInfo":"\u7cfb\u7edf\u9519\u8bef","data":[],"t":1477396650}
+DEBUG: 16-10-25 19:57:39 [/Users/baidu/mysite/php/HiPHP/app/test/library/ActionBase.php:91] errno[0] logId[3528432970] request input :[]
+DEBUG: 16-10-25 19:57:58 [/Users/baidu/mysite/php/HiPHP/app/test/library/ActionBase.php:91] errno[0] logId[3530303458] request input :[]
+DEBUG: 16-10-25 19:58:09 [/Users/baidu/mysite/php/HiPHP/app/test/library/ActionBase.php:91] errno[0] logId[3531371364] request input :[]

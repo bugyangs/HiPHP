@@ -5,10 +5,10 @@
  * Date: 16/9/20 下午2:53
  * Brief:
  */
-class System_Core_Route {
+class Core_Route {
 
-    const DEFAULT_CONTROLLER = "Index";
-    const DEFAULT_ACTION = "Index";
+    const DEFAULT_CONTROLLER = "index";
+    const DEFAULT_ACTION = "index";
     public $controller;
     public $action;
 
@@ -22,7 +22,7 @@ class System_Core_Route {
     }
 
     /**
-     * @return null|System_Core_Route
+     * @return null|Core_Route
      */
     public static function getInstance() {
         if(!self::$_instance) {
@@ -44,7 +44,7 @@ class System_Core_Route {
      *
      */
     public function setRoute() {
-        $uri = System_Core_URI::getInstance()->detectUri();
+        $uri = Core_URI::getInstance()->detectUri();
         if($uri == "") {
             $this->setDefault();
         }
@@ -65,14 +65,14 @@ class System_Core_Route {
      * @return string
      */
     public function fetchControllerClass() {
-        return "Controller_" . $this->controller;
+        return "Controller_" . ucfirst($this->controller);
     }
 
     /**
      * @return string
      */
     public function fetchActionClass() {
-        return "Action_" . $this->action;
+        return "Action_" . ucfirst($this->action);
     }
 
     /**

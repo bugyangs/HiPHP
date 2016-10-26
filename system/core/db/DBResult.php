@@ -28,7 +28,7 @@ class Core_Db_DBResult extends Core_Db_AbsDBResult
 	*
 	* @return 
 	*/
-    public function next($type = Bd_DB::FETCH_ASSOC)
+    public function next($type = Core_Db_Db::FETCH_ASSOC)
     {
         if($type == Core_Db_Db::FETCH_ASSOC)
         {

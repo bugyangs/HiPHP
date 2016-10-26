@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Class System_Core_URI
+ * Class Core_URI
  */
-class System_Core_URI {
+class Core_URI {
 
     private static $_instance = null;
 
@@ -15,7 +15,7 @@ class System_Core_URI {
     }
 
     /**
-     * @return null|System_Core_URI
+     * @return null|Core_URI
      */
     public static function getInstance() {
         if(!self::$_instance) {

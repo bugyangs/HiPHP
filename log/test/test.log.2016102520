@@ -1,0 +1,29 @@
+DEBUG: 16-10-25 20:06:20 [/Users/baidu/mysite/php/HiPHP/app/test/library/ActionBase.php:91] errno[0] logId[3580510469] request input :[]
+NOTICE: 16-10-25 20:06:20 [/Users/baidu/mysite/php/HiPHP/app/test/library/ActionBase.php:55] errno[0] logId[3580510469] module[test] uri[/] refer[] cookie[]  ERROR : {"code":-1002,"message":"db fail"}
+DEBUG: 16-10-25 20:06:20 [/Users/baidu/mysite/php/HiPHP/app/test/library/Response.php:17] errno[0] logId[3580510469] request response: {"status":1,"statusInfo":"\u7cfb\u7edf\u9519\u8bef","data":[],"t":1477397180}
+DEBUG: 16-10-25 20:06:30 [/Users/baidu/mysite/php/HiPHP/app/test/library/ActionBase.php:91] errno[0] logId[3581531107] request input :[]
+NOTICE: 16-10-25 20:06:30 [/Users/baidu/mysite/php/HiPHP/app/test/library/ActionBase.php:55] errno[0] logId[3581531107] module[test] uri[/] refer[] cookie[]  ERROR : {"code":-1002,"message":"db fail"}
+DEBUG: 16-10-25 20:06:30 [/Users/baidu/mysite/php/HiPHP/app/test/library/Response.php:17] errno[0] logId[3581531107] request response: {"status":1,"statusInfo":"\u7cfb\u7edf\u9519\u8bef","data":[],"t":1477397190}
+DEBUG: 16-10-25 20:06:35 [/Users/baidu/mysite/php/HiPHP/app/test/library/ActionBase.php:91] errno[0] logId[3581972051] request input :[]
+NOTICE: 16-10-25 20:06:35 [/Users/baidu/mysite/php/HiPHP/app/test/library/ActionBase.php:55] errno[0] logId[3581972051] module[test] uri[/] refer[] cookie[]  ERROR : {"code":-1002,"message":"db fail"}
+DEBUG: 16-10-25 20:06:35 [/Users/baidu/mysite/php/HiPHP/app/test/library/Response.php:17] errno[0] logId[3581972051] request response: {"status":1,"statusInfo":"\u7cfb\u7edf\u9519\u8bef","data":[],"t":1477397195}
+DEBUG: 16-10-25 20:07:02 [/Users/baidu/mysite/php/HiPHP/app/test/library/ActionBase.php:91] errno[0] logId[3584661601] request input :[]
+DEBUG: 16-10-25 20:09:09 [/Users/baidu/mysite/php/HiPHP/app/test/library/ActionBase.php:91] errno[0] logId[3597373686] request input :[]
+NOTICE: 16-10-25 20:09:09 [/Users/baidu/mysite/php/HiPHP/app/test/library/ActionBase.php:55] errno[0] logId[3597373686] module[test] uri[/] refer[] cookie[]  ERROR : {"code":-1002,"message":"SELECT id, name, url, add_time, mod_time, is_del FROM m_pic  limit 0,10 "}
+DEBUG: 16-10-25 20:09:09 [/Users/baidu/mysite/php/HiPHP/app/test/library/Response.php:17] errno[0] logId[3597373686] request response: {"status":1,"statusInfo":"\u7cfb\u7edf\u9519\u8bef","data":[],"t":1477397349}
+DEBUG: 16-10-25 20:11:35 [/Users/baidu/mysite/php/HiPHP/app/test/library/ActionBase.php:91] errno[0] logId[3612001011] request input :[]
+DEBUG: 16-10-25 20:11:54 [/Users/baidu/mysite/php/HiPHP/app/test/library/ActionBase.php:91] errno[0] logId[3613866018] request input :[]
+DEBUG: 16-10-25 20:12:03 [/Users/baidu/mysite/php/HiPHP/app/test/library/ActionBase.php:91] errno[0] logId[3614752981] request input :[]
+DEBUG: 16-10-25 20:12:10 [/Users/baidu/mysite/php/HiPHP/app/test/library/ActionBase.php:91] errno[0] logId[3615477335] request input :[]
+NOTICE: 16-10-25 20:12:10 [/Users/baidu/mysite/php/HiPHP/app/test/library/ActionBase.php:55] errno[0] logId[3615477335] module[test] uri[/] refer[] cookie[]  ERROR : {"code":-1002,"message":"SELECT id, name, url, add_time, mod_time, is_del FROM m_pic  limit 0,10 "}
+DEBUG: 16-10-25 20:12:10 [/Users/baidu/mysite/php/HiPHP/app/test/library/Response.php:17] errno[0] logId[3615477335] request response: {"status":1,"statusInfo":"\u7cfb\u7edf\u9519\u8bef","data":[],"t":1477397530}
+DEBUG: 16-10-25 20:12:34 [/Users/baidu/mysite/php/HiPHP/app/test/library/ActionBase.php:91] errno[0] logId[3617907496] request input :[]
+DEBUG: 16-10-25 20:13:28 [/Users/baidu/mysite/php/HiPHP/app/test/library/ActionBase.php:91] errno[0] logId[3623304039] request input :[]
+DEBUG: 16-10-25 20:13:39 [/Users/baidu/mysite/php/HiPHP/app/test/library/ActionBase.php:91] errno[0] logId[3624360282] request input :[]
+DEBUG: 16-10-25 20:14:03 [/Users/baidu/mysite/php/HiPHP/app/test/library/ActionBase.php:91] errno[0] logId[3626744875] request input :[]
+DEBUG: 16-10-25 20:14:52 [/Users/baidu/mysite/php/HiPHP/app/test/library/ActionBase.php:91] errno[0] logId[3631714475] request input :[]
+DEBUG: 16-10-25 20:14:52 [/Users/baidu/mysite/php/HiPHP/system/core/DbBase.php:199] errno[0] logId[3631714475] [DB SQL] SELECT id, name, url, add_time, mod_time, is_del FROM h_pic  limit 0,10 
+DEBUG: 16-10-25 20:14:52 [/Users/baidu/mysite/php/HiPHP/app/test/library/Response.php:17] errno[0] logId[3631714475] request response: {"status":0,"statusInfo":"OK","data":[],"t":1477397692}
+DEBUG: 16-10-25 20:14:53 [/Users/baidu/mysite/php/HiPHP/app/test/library/ActionBase.php:91] errno[0] logId[3631807098] request input :[]
+DEBUG: 16-10-25 20:14:53 [/Users/baidu/mysite/php/HiPHP/system/core/DbBase.php:199] errno[0] logId[3631807098] [DB SQL] SELECT id, name, url, add_time, mod_time, is_del FROM h_pic  limit 0,10 
+DEBUG: 16-10-25 20:14:53 [/Users/baidu/mysite/php/HiPHP/app/test/library/Response.php:17] errno[0] logId[3631807098] request response: {"status":0,"statusInfo":"OK","data":[],"t":1477397693}

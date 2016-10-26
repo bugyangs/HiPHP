@@ -3,7 +3,7 @@
 /**
  * Class Controller_Index
  */
-class Action_Test extends Library_ActionBase {
+class Action_Index extends Library_ActionBase {
 
     /**
      * 执行

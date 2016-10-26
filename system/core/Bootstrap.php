@@ -2,21 +2,21 @@
 
 define("QP_VERSION", "1.0.0");
 require_once __DIR__ . "/Init.php";
-class System_Core_Bootstrap {
+class Core_Bootstrap {
     private static $instance = null;
     private $appName;
     /*
-     * @var System_Core_Route
+     * @var Core_Route
      */
     private $route;
 
     /**
      * @param $appName
-     * @return null|System_Core_Bootstrap
+     * @return null|Core_Bootstrap
      */
     public static function instance($appName) {
         if(!self::$instance) {
-            self::$instance = new System_Core_Bootstrap($appName);
+            self::$instance = new self($appName);
         }
         return self::$instance;
     }
@@ -33,27 +33,25 @@ class System_Core_Bootstrap {
      *
      */
     public function run() {
-        System_Core_Init::instance("test");
-        $this->route = System_Core_Route::getInstance();
+        Core_Init::instance($this->appName);
+        $this->route = Core_Route::getInstance();
         $this->execute();
-
     }
 
     /**
      * @param $class
      * @param $method
-     * @throws System_Core_Exception
+     * @throws Core_Exception
      */
     private function execute() {
         $controllerClass = $this->route->fetchControllerClass();
         $actionClass = $this->route->fetchActionClass();
         if (!class_exists($controllerClass)) {
-            throw new System_Core_Exception(System_Core_Exception::SYS_UNKNOWN_ROUTE);
+            throw new Core_Exception(Core_Exception::SYS_UNKNOWN_ROUTE);
         }
         $controller = new $controllerClass();
         if(!array_key_exists($this->route->action, $controller->actions)) {
-            echo "ss";die;
-            throw new System_Core_Exception(System_Core_Exception::SYS_UNKNOWN_ROUTE);
+            throw new Core_Exception(Core_Exception::SYS_UNKNOWN_ROUTE);
         }
         $actionPath = ROOT_PATH . "/app/". APP_NAME . "/" . $controller->actions[$this->route->action];
         require_once $actionPath;

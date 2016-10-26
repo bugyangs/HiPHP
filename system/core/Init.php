@@ -1,6 +1,9 @@
 <?php
 
-class System_Core_Init {
+/**
+ * Class Core_Init
+ */
+class Core_Init {
     private static $instance = null;
     /**
      * @param $appName
@@ -8,7 +11,7 @@ class System_Core_Init {
      */
     public static function instance($appName) {
         if(!self::$instance) {
-            self::$instance = new System_Core_Init($appName);
+            self::$instance = new self($appName);
         }
         return self::$instance;
     }
@@ -43,8 +46,9 @@ class System_Core_Init {
         define('REQUEST_TIME_US', intval(microtime(true)*1000000));
         // site预定义路径
         define('ROOT_PATH', realpath(dirname(__FILE__) . '/../../'));
-        define('LOG_PATH', ROOT_PATH.'/log');
         define('SYSTEM_PATH', ROOT_PATH.'/system');
+        define('LOG_PATH', ROOT_PATH . '/log');
+        define('DATA_PATH', ROOT_PATH . '/data');
         return true;
     }
 
@@ -61,7 +65,6 @@ class System_Core_Init {
             define('APP_NAME', 'unknown-app');
         }
         define('APP_PATH', ROOT_PATH . '/app/' . APP_NAME);
-
         return true;
     }
 
@@ -70,7 +73,7 @@ class System_Core_Init {
      */
     private function initAutoload() {
         include_once SYSTEM_PATH . "/core/Loader.php";
-        System_Core_Loader::registerAutoload();
+        Core_Loader::registerAutoload();
     }
 
     /**
